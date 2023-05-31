@@ -1,0 +1,54 @@
+h1 {
+    background-color: blanchedalmond;
+    width: 250px;
+    text-align: center;
+    margin-left: 250px;
+    border-radius: 20px;
+
+}
+
+body {
+    background: grey;
+    text-align: center;
+}
+
+.board {
+    width: 400px;
+    height: 400px;
+    margin: 100px auto;
+    background-color: cadetblue;
+    box-sizing: border-box;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 5px;
+    box-sizing: border-box;
+    
+}
+
+.cell {
+    width: 10px;
+    height: 10px;
+
+}
+
+
+.num {
+    background-color: brown;
+    border: solid black;
+    cursor: cell;
+    width: 20px;
+    height: 20px;
+
+}
+
+.mine {
+    background-color: burlywood;
+    border: solid tomato;
+
+}
+button{
+    border-radius: 20px;
+    background-color: cadetblue;
+}
