@@ -7,22 +7,17 @@ const EMPTY = ' '
 
 // Modle:
 var gBoard
+var mineNumber = 0
+var gIsFirstClick = true
+var gMines = 2
 
-
-const cell = {
-    minesAroundCount: 0,
-    isShown: false,
-    isMine: false,
-    isMarked: true,
-}
-
-const gGame = {
+var gGame = {
     isOn: false,
     shownCount: 0,
     markedCount: 0,
     secsPassed: 0
 }
-const gLevel = {
+var gLevel = {
     size: 4,
     mines: 2
 }
@@ -32,53 +27,102 @@ function onInit() {
     gBoard = buildBoard()
     renderBoard(gBoard)
     gGame.isOn = true
+    console.log(gBoard)
+    setMinesCount(gBoard)
+    getRandomMine(gBoard)
 }
 
 function buildBoard() {
-    const board = []
+    var board = []
 
     for (var i = 0; i < gLevel.size; i++) {
         board[i] = []
         for (var j = 0; j < gLevel.size; j++) {
-            board[i][j] = ''
+            var cell = {
+                minesAroundCount: 0,
+                isShown: false,
+                isMine: false,
+                isMarked: true,
+            }
+            board[i][j] = cell
 
         }
     }
-    board[1][3] = MINE
-    board[2][1] = MARK
-    board[1][1] = EMPTY
 
-    // console.log(board)
+
+    // board[2][1].isMine = true
+    // board[1][3].isMine = true
+    console.table(board)
     return board
 }
 
-function renderBoard(gBoard) {
+function renderBoard(board) {
     var strHTML = ''
-
-    for (var i = 0; i < gBoard.length; i++) {
-
+    var className = 'num'
+    for (var i = 0; i < board.length; i++) {
         strHTML += '<tr>'
-        for (var j = 0; j < gBoard.length; j++) {
-            const cell = gBoard[i][j]
-            const className = `num -${i}-${j}`
-            strHTML += `<td class="${className}">${cell}</td>`
+        for (var j = 0; j < board[i].length; j++) {
+            var cell
+            if (board[i][j].isMine) cell = MINE
+            else cell = board[i][j].minesAroundCount
+            strHTML += `<td data-i="${i}" data-j="${j}" class="cell ${className}"
+            onclick="onCellClicked(this, ${i},${j})" ></td>`
 
         }
-        strHTML += '</tr>'
+
 
     }
-    const elBoard = document.querySelector('.sweeper-board')
-    elBoard.innerHTML = strHTML
+    strHTML += '</tr>'
+    document.querySelector('.sweeper-board').innerHTML = strHTML
+
 
 }
 
-function onCellClicked(board, i, j) {
+function onCellClicked(elCell, cellI, cellJ) {
+
+    console.log(elCell, cellI, cellJ);
+    const currCell = gBoard[cellI][cellJ]
+    if (currCell.isMarked && currCell.isShown)
+        if (gIsFirstClick) {
+            getRandomMine(cellI, cellJ)
+            setMinesCount(gBoard)
+            gIsFirstClick = false
+        }
+
+    if (currCell.isMine) {
+        currCell.isShown = true
+        elCell.innerText = MINE
+        return checkGameOver()
+    }
+
+    // Update the Model:
+    currCell.isShown = true
+    // Update the Dom:
+    elCell.innerText = currCell.minesAroundCount
+
+
 }
-function addMinesCount(board) {
+
+// function isMine(elCell) {
+//     for (var i = 0; i < gBoard.length; i++) {
+//         for (var j = 0; j < gBoard[i].length; j++) {
+//             gBoard[j][j].isShown = true
+//         }
+//     }
+//     var cells = document.getElementsByClassName('hidden')
+//     for (var s = 0; s < cells.length; i++) {
+//         cells[s].classList.replace('hidden', 'empty')
+//     }
+//     elCell.classList.replace('empty', 'mine')
+//     checkGameOver()
+//     return
+// }
+
+function setMinesCount(board) {
     for (var i = 0; i < board.length; i++) {
-        for (var j = 0; j < board[i].length; j++) {
+        for (var j = 0; j < board[0].length; j++) {
             board[i][j].minesAroundCount = countMinesAround(board, i, j)
-            if (board[i][j].minesAroundCount === 0) board[i][j].minesAroundCount = ''
+            if (board[i][j].minesAroundCount === 0) board[i][j].minesAroundCount
 
         }
     }
@@ -102,11 +146,44 @@ function countMinesAround(board, rowIdx, colIdx) {
     return count
 }
 
+function getRandomMine(mineNumber) {
+    var size = gLevel.size
+    var minesCount = 0
 
+    while (minesCount < mineNumber) {
+        var rowIdx = getRandomInt(0, size - 1)
+        var colIdx = getRandomInt(0, size - 1)
+
+        if (!gBoard[rowIdx][colIdx].isMine) {
+            gBoard[rowIdx][colIdx].isMine = true
+            minesCount++
+        }
+    }
+
+}
+function checkGameOver() {
+    console.log('Game over')
+    gGame.isOn = false
+    document.querySelector('.popup').hidden = false
+
+}
+
+// function checkVictory() {
+
+// }
+// function btnClose() {
+//     document.querySelector('.popup').hidden = true
+// }
+
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min)
+    max = Math.floor(max)
+    return Math.floor(Math.random() * (max - min + 1)) + min //The maximum is inclusive and the minimum is inclusive
+}
 
 // function onCellMarked(elcell) { }
 
-// function checkGameOver() { }
 
 // function expandShown(board, elcell, i, j) { }
 

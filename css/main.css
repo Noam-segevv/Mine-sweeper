@@ -2,7 +2,7 @@ h1 {
     background-color: blanchedalmond;
     width: 250px;
     text-align: center;
-    margin-left: 250px;
+    margin:auto;
     border-radius: 20px;
 
 }
@@ -12,18 +12,14 @@ body {
     text-align: center;
 }
 
-.board {
-    width: 400px;
-    height: 400px;
-    margin: 100px auto;
-    background-color: cadetblue;
-    box-sizing: border-box;
-}
-
 table {
-    border-collapse: separate;
     border-spacing: 5px;
     box-sizing: border-box;
+    background-color: rgb(106, 172, 172);
+    width: 300px;
+    height: 200px;
+    margin: auto;
+    margin-top: 40px;
     
 }
 
@@ -35,7 +31,7 @@ table {
 
 
 .num {
-    background-color: brown;
+    background-color:rgb(255, 118, 118);
     border: solid black;
     cursor: cell;
     width: 20px;
@@ -51,4 +47,28 @@ table {
 button{
     border-radius: 20px;
     background-color: cadetblue;
+    margin-top: 50px;
 }
+
+.hidden{
+    opacity: 0;
+}
+
+.empty {
+    background-color: #8b8b8b;
+}
+/* .popup {
+    font-family: cursive;
+    background-color: rgb(84, 20, 55);
+    padding: 20px;
+    color: rgb(255, 255, 255);
+    border-radius: 20px;
+    box-shadow: 0px 0px 6px 3px black;
+}
+.popup .btn-close {
+    position: absolute;
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+    cursor: pointer; */
+/* } */
