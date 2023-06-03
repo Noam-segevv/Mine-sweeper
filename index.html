@@ -1,41 +1,31 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
-    <title>Mine sweeper</title>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <link rel="stylesheet" href="css/main.css">
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Minesweeper</title>
+    <link rel="stylesheet" href="css/main.css" />
 </head>
 
-<body onload="onInit()">
+<body onload="onInit()" oncontextmenu="return false;">
 
-    <h1> Mine Sweeper</h1>
-    <button onclick="">easy</button>
-    <button onclick="">intermidet</button>
-    <button onclick="">hard</button>
-    
+    <h1>Sprint 01</h1>
+    <h2>Minesweeper</h2>
+    <div id="timer" style="position: absolute; right: 10px;">000</div>
+    <button onclick="restart()">🤩</button>
+    <div class="smile"></div>
 
-    <table class="board">
-        <tbody class="sweeper-board"></tbody>
+    <table>
+        <tbody class="board"></tbody>
     </table>
 
-    <!-- <div class="popup">
-        <button class="btn-close" onclick="btnClose(this)">x</button>
-    </div> -->
-
+    <button class="small" onclick="onSetLevels(4,2)">Small</button>
+    <button class="medium" onclick="onSetLevels(8,14)">Medium</button>
+    <button class="marge" onclick="onSetLevels(12,32)">Large</button>
+    <!-- <div id="timer">000</div> -->
     <script src="js/main.js"></script>
-    <script src="js/utils.js"></script>
-    <br>
-    <br>
-    <br>
-    <footer>Noam Segev </footer>
-
 </body>
 
 </html>

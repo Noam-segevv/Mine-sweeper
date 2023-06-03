@@ -1,74 +1,28 @@
-h1 {
-    background-color: blanchedalmond;
-    width: 250px;
-    text-align: center;
-    margin:auto;
-    border-radius: 20px;
-
-}
-
-body {
-    background: grey;
+body{
     text-align: center;
 }
-
 table {
-    border-spacing: 5px;
-    box-sizing: border-box;
-    background-color: rgb(106, 172, 172);
-    width: 300px;
-    height: 200px;
     margin: auto;
-    margin-top: 40px;
+  
     
+}
+.board {
+    border-collapse: separate;
+    border-spacing: 5px;
 }
 
 .cell {
-    width: 10px;
-    height: 10px;
-
+    width: 40px;
+    height: 40px;
+    border-radius: 7px;
+    background-color: rgb(190, 192, 192);
 }
 
-
-.num {
-    background-color:rgb(255, 118, 118);
-    border: solid black;
-    cursor: cell;
-    width: 20px;
-    height: 20px;
-
+.mine{
+    background-color: rgb(239, 37, 37);
+    
 }
 
-.mine {
-    background-color: burlywood;
-    border: solid tomato;
-
+.shown{
+    background-color: rgb(37, 131, 239);
 }
-button{
-    border-radius: 20px;
-    background-color: cadetblue;
-    margin-top: 50px;
-}
-
-.hidden{
-    opacity: 0;
-}
-
-.empty {
-    background-color: #8b8b8b;
-}
-/* .popup {
-    font-family: cursive;
-    background-color: rgb(84, 20, 55);
-    padding: 20px;
-    color: rgb(255, 255, 255);
-    border-radius: 20px;
-    box-shadow: 0px 0px 6px 3px black;
-}
-.popup .btn-close {
-    position: absolute;
-    background-color: transparent;
-    border: 1px solid white;
-    color: white;
-    cursor: pointer; */
-/* } */
